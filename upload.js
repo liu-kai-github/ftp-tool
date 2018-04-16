@@ -1,6 +1,6 @@
 const fs = require('fs');
 const Client = require('ftp');
-const {remoteConfig, PCPath, FTPPath} = require('./ftpConfig');
+const {remoteConfig, PCPath, FTPPath} = require('./ftp-config');
 
 const c = new Client();
 

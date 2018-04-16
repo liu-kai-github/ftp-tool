@@ -9,5 +9,9 @@
     "del": "^3.0.0",
     "ftp": "^0.3.10",
     "unzip": "^0.1.11"
+  },
+  "scripts": {
+    "upload": "node upload",
+    "download": "node download"
   }
 }

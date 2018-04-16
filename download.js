@@ -2,7 +2,7 @@ const fs = require('fs');
 const Client = require('ftp');
 const unzip = require('unzip');
 const del = require('del');
-const {remoteConfig, FTPPath, serverPath} = require('./ftpConfig');
+const {remoteConfig, FTPPath, serverPath} = require('./ftp-config');
 
 const c = new Client();
 
