@@ -1,6 +1,6 @@
 const fs = require('fs');
 const Client = require('ftp');
-const {remoteConfig, PCPath, FTPPath} = require('./ftp-config');
+const {FTPConnection, PCPath, FTPPath} = require('./ftp-config');
 
 const c = new Client();
 
@@ -22,4 +22,4 @@ c.on('ready', () => {
 });
 
 // 建立连接
-c.connect(remoteConfig);
+c.connect(FTPConnection);

@@ -2,7 +2,7 @@ const fs = require('fs');
 const Client = require('ftp');
 const unzip = require('unzip');
 const del = require('del');
-const {remoteConfig, FTPPath, serverPath} = require('./ftp-config');
+const {FTPConnection, FTPPath, serverPath} = require('./ftp-config');
 
 const c = new Client();
 
@@ -35,4 +35,4 @@ c.on('ready', () => {
 });
 
 // 建立连接
-c.connect(remoteConfig);
+c.connect(FTPConnection);
