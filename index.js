@@ -1,7 +1,7 @@
-const fs = require('fs');
 const Client = require('ftp');
-const {FTPContents, FTPConnection} = require('./ftp-config');
+const {FTPContent, FTPConnection, serverContent} = require('./ftp-config');
 const watchFTPContent = require('./watch-ftp');
+const downloadFTPFile = require('./download');
 
 const c = new Client();
 c.connect({
@@ -10,9 +10,16 @@ c.connect({
 });
 
 c.on('ready', () => {
-    // let i = 0;
-    watchFTPContent(c, FTPContents, function (fileName) {
-        console.log(fileName, 'FFFFFFFFFFFFF');
+    watchFTPContent(c, FTPContent, function (error, fileName) {
+        console.log(fileName, FTPContent + fileName, serverContent + fileName, 'FFFFFFFFFFFFF');
+        downloadFTPFile(
+            c,
+            FTPContent + fileName,
+            serverContent + fileName,
+            (error) => {
+
+            }
+        );
     });
 
 });

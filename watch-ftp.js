@@ -9,13 +9,13 @@ function watchFTPContent(c, FTPContent, cd) {
     setInterval(() => {
         c.list(FTPContent, function (err, list) {
             if (err) {
-                throw err;
+                return cd(err);
             }
             for (const item of list) {
                 if (zipTimeMap.has(item.name)) {
                     if (zipTimeMap.get(item.name) !== new Date(item.date).getTime()) {
                         // 当 FTP 指定目录下的文件发生改变时，将出发会掉函数，并将文件名传出去
-                        cd(item.name);
+                        cd(null, item.name);
                         // 更新 Map 的时间映射
                         zipTimeMap.set(item.name, new Date(item.date).getTime());
                     }

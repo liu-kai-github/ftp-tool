@@ -10,14 +10,14 @@ const FTPConnection = {
 const PCPath = '/Users/kai/workspace/nicezhuanye/classadmin/classifyManage.zip';
 // FTP 服务器路径
 const FTPPath = '/shuojia.liu/classifyManage.zip';
-const FTPContents = '/shuojia.liu/';
+const FTPContent = '/shuojia.liu/';
 // 要部署到的服务器路径
-const serverPath = '/Users/kai/Desktop/aaa/classifyManage.zip';
+const serverContent = '/Users/kai/Desktop/aaa/';
 
 module.exports = {
     FTPConnection,
     PCPath,
     FTPPath,
-    FTPContents,
-    serverPath,
+    FTPContent,
+    serverContent,
 };
