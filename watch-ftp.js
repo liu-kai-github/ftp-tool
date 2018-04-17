@@ -12,6 +12,7 @@ function watchFTPContent(c, FTPContent, cd) {
                 return cd(err);
             }
             for (const item of list) {
+                // console.log(JSON.stringify(item));
                 if (zipTimeMap.has(item.name)) {
                     if (zipTimeMap.get(item.name) !== new Date(item.date).getTime()) {
                         // 当 FTP 指定目录下的文件发生改变时，将出发会掉函数，并将文件名传出去

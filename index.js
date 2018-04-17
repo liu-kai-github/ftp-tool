@@ -10,14 +10,22 @@ c.connect({
 });
 
 c.on('ready', () => {
-    watchFTPContent(c, FTPContent, function (error, fileName) {
-        console.log(fileName, FTPContent + fileName, serverContent + fileName, 'FFFFFFFFFFFFF');
+    console.log('正在监听 FTP ' + FTPContent + ' 目录');
+    // 开始监听文件
+    watchFTPContent(c, FTPContent, (error, fileName) => {
+        if (error) {
+            return console.log(error, '监听文件出问题')
+        }
+        // console.log(fileName, FTPContent + fileName, serverContent + fileName, 'FFFFFFFFFFFFF');
+        // 开始下载文件
         downloadFTPFile(
             c,
             FTPContent + fileName,
             serverContent + fileName,
             (error) => {
-
+                if (error) {
+                    return console.log(error, '下载文件出问题');
+                }
             }
         );
     });
