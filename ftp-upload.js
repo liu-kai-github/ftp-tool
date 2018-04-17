@@ -1,25 +1,23 @@
-const fs = require('fs');
-const Client = require('ftp');
-const {FTPConnection, PCPath, FTPPath} = require('./ftp-config');
-
-const c = new Client();
-
-// 监听 FTP 连接的 ready 事件
-c.on('ready', () => {
+/**
+ * @description 向 FTP 上传文件
+ * @param c FTP 连接的 Client
+ * @param clientPath
+ * @param FTPPath 要上传的文件路径
+ * @param cd 回调函数
+ */
+function uploadFile(c, clientPath, FTPPath, cd) {
     // 向 FTP 服务器推送文件
     c.put(
         // 本地文件地址
-        PCPath,
+        clientPath,
         // 服务器地址
         FTPPath,
         (err) => {
             if (err) {
-                throw err;
+                return cd(err);
             }
-            // 断开连接
-            c.end();
+            cd();
         });
-});
+}
 
-// 建立连接
-c.connect(FTPConnection);
+module.exports = uploadFile;

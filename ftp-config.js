@@ -9,7 +9,7 @@ const FTPConnection = {
 // 开发者要上传的部署文件
 const PCPath = '/Users/kai/workspace/nicezhuanye/classadmin/classifyManage.zip';
 // FTP 服务器路径
-const FTPPath = '/shuojia.liu/classifyManage.zip';
+// const FTPPath = '/shuojia.liu/classifyManage.zip';
 const FTPContent = '/shuojia.liu/';
 // 要部署到的服务器路径
 const serverContent = '/Users/kai/Desktop/aaa/';
@@ -17,7 +17,7 @@ const serverContent = '/Users/kai/Desktop/aaa/';
 module.exports = {
     FTPConnection,
     PCPath,
-    FTPPath,
+    // FTPPath,
     FTPContent,
     serverContent,
 };

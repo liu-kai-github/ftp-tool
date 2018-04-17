@@ -30,7 +30,7 @@ function downloadFTPFile(c, FTPFilePath, distFilePath, cd) {
                 // 解压已下载的 *.zip 文件到 *.zip 所在文件的与 zip 文件同名的目录下
                 fs.createReadStream(distFilePath /*要解压的zip文件*/)
                     .pipe(unzip.Extract({path: unZipPath /*解压的目录*/}));
-                console.log('解压完成');
+                // console.log('解压完成');
                 // 完成任务后，做回调
                 cd();
             });

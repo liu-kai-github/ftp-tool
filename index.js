@@ -2,6 +2,7 @@ const Client = require('ftp');
 const {FTPContent, FTPConnection, serverContent} = require('./ftp-config');
 const watchFTPContent = require('./ftp-watch');
 const downloadFTPFile = require('./ftp-download');
+const uploadFile = require('./ftp-upload');
 
 const c = new Client();
 c.connect({
@@ -16,6 +17,10 @@ c.on('ready', () => {
         if (error) {
             return console.log(error, '监听文件出问题')
         }
+        // 如果变动的不是 *.zip 文件，不做处理
+        if (!fileName.endsWith('.zip')) {
+            return;
+        }
         // console.log(fileName, FTPContent + fileName, serverContent + fileName, 'FFFFFFFFFFFFF');
         // 开始下载文件
         downloadFTPFile(
@@ -24,8 +29,29 @@ c.on('ready', () => {
             serverContent + fileName,
             (error) => {
                 if (error) {
-                    return console.log(error, '下载文件出问题');
+                    uploadFile(
+                        c,
+                        serverContent + 'error.txt',
+                        FTPContent + fileName + ' upZip fail.txt',
+                        (error) => {
+                            if (error) {
+                                console.log(error, '上传' + fileName + ' upZip fail.txt' + '文件出问题');
+                            }
+                            console.log('上传' + fileName + ' upZip fail.txt' + '文件成功');
+                        });
+                    return console.log(error, '下载 ' + fileName + ' 文件出问题');
                 }
+                uploadFile(
+                    c,
+                    serverContent + 'error.txt',
+                    FTPContent + fileName + ' upZip success.txt',
+                    (error) => {
+                        if (error) {
+                            return console.log(error, '上传' + fileName + ' upZip success.txt' + '文件出问题');
+                        }
+                        console.log('上传' + fileName + ' upZip success.txt' + '文件成功');
+                    });
+                return console.log('下载 ' + fileName + ' 文件成功');
             }
         );
     });
