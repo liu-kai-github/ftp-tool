@@ -14,6 +14,7 @@ c.on('ready', () => {
     console.log('正在监听 FTP ' + FTPContent + ' 目录......');
     // 开始监听文件
     watchFTPContent(c, FTPContent, (error, fileName) => {
+        console.log(fileName, 'FFFFFFFFFFFFFF');
         if (error) {
             return console.log(error, '监听文件出问题')
         }
@@ -22,9 +23,10 @@ c.on('ready', () => {
             // return console.log(fileName + '发生了变化');
             return;
         }
+        console.log(fileName + ' 发生了变化');
         setTimeout(() => {
             console.log('继续监听......');
-        }, 60000);
+        }, 30000);
         // console.log(fileName, FTPContent + fileName, serverContent + fileName, 'FFFFFFFFFFFFF');
         // 开始下载文件
         downloadFTPFile(

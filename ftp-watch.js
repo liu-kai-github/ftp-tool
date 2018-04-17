@@ -6,6 +6,7 @@
  */
 function watchFTPContent(c, FTPContent, cd) {
     const zipTimeMap = new Map();
+    let isInit = true;
     setInterval(() => {
         c.list(FTPContent, function (err, list) {
             if (err) {
@@ -21,14 +22,18 @@ function watchFTPContent(c, FTPContent, cd) {
                         zipTimeMap.set(item.name, new Date(item.date).getTime());
                     }
                 } else {
-                    // 如果没有对应的 Map ，说明是新添加的文件或者是初始化
-                    // console.log(item.name, '=>', new Date(item.date).getTime(), '>>>>>>>>>>>');
+                    // 如果没有对应的 Map ，则进一步判断
+                    if (!isInit) {
+                        // 如果 isInit 是 false ，说明不是初始化，就将该新天加的文件传出
+                        cd(null, item.name);
+                    }
                     zipTimeMap.set(item.name, new Date(item.date).getTime());
                 }
             }
+            isInit = false;
             // c.end();
         });
-    }, 30000);
+    }, 15000);
 }
 
 module.exports = watchFTPContent;
