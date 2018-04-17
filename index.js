@@ -1,6 +1,6 @@
 const Client = require('ftp');
 const {FTPContent, FTPConnection, serverContent} = require('./ftp-config');
-const watchFTPContent = require('./watch-ftp');
+const watchFTPContent = require('./ftp-watch');
 const downloadFTPFile = require('./ftp-download');
 
 const c = new Client();
