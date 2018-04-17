@@ -11,7 +11,7 @@ c.connect({
 });
 
 c.on('ready', () => {
-    console.log('正在监听 FTP ' + FTPContent + ' 目录');
+    console.log('正在监听 FTP ' + FTPContent + ' 目录......');
     // 开始监听文件
     watchFTPContent(c, FTPContent, (error, fileName) => {
         if (error) {
@@ -19,8 +19,12 @@ c.on('ready', () => {
         }
         // 如果变动的不是 *.zip 文件，不做处理
         if (!fileName.endsWith('.zip')) {
+            // return console.log(fileName + '发生了变化');
             return;
         }
+        setTimeout(() => {
+            console.log('继续监听......');
+        }, 60000);
         // console.log(fileName, FTPContent + fileName, serverContent + fileName, 'FFFFFFFFFFFFF');
         // 开始下载文件
         downloadFTPFile(

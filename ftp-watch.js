@@ -28,7 +28,7 @@ function watchFTPContent(c, FTPContent, cd) {
             }
             // c.end();
         });
-    }, 3000);
+    }, 30000);
 }
 
 module.exports = watchFTPContent;
