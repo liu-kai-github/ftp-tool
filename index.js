@@ -3,7 +3,6 @@ const {FTPContent, FTPConnection, serverContent} = require('./ftp-config');
 const watchFTPContent = require('./ftp-watch');
 const downloadFTPFile = require('./ftp-download');
 const uploadFile = require('./ftp-upload');
-const deleteFTPFile = require('./ftp-delete');
 
 const c = new Client();
 c.connect({
@@ -30,8 +29,6 @@ c.on('ready', () => {
             serverContent + fileName,
             (error) => {
                 if (error) {
-                    // 开始删除文件提示文件
-                    // deleteFTPFile(c, FTPContent + fileName + ' upZip success.txt', (error) => {
                     // 开始上传提示文件
                     uploadFile(
                         c,
@@ -44,11 +41,8 @@ c.on('ready', () => {
                                 return console.log('上传' + fileName + ' upZip fail.txt' + '文件成功');
                             }
                         });
-                    // });
                     return console.log(error, '下载 ' + fileName + ' 文件出问题');
                 } else {
-                    // 开始删除提示文件
-                    // deleteFTPFile(c, FTPContent + fileName + ' upZip fail.txt', (error) => {
                     // 开始上传提示文件
                     uploadFile(
                         c,
@@ -61,7 +55,6 @@ c.on('ready', () => {
                                 return console.log('上传' + fileName + ' upZip success.txt' + '文件成功');
                             }
                         });
-                    // });
                     return console.log('下载 ' + fileName + ' 文件成功');
                 }
 

@@ -11,6 +11,6 @@
     "unzip": "^0.1.11"
   },
   "scripts": {
-    "build": "webpack"
+    "start": "node index"
   }
 }
