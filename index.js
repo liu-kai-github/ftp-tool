@@ -47,7 +47,7 @@ c.on('ready', () => {
                                 return console.log('上传' + fileName + ' upZip fail.txt' + '文件成功');
                             }
                         });
-                    return console.log(error, '下载 ' + fileName + ' 文件出问题');
+                    return console.log(error, '下载 ' + serverContent + fileName + ' 文件出问题');
                 } else {
                     // 开始上传提示文件
                     uploadFile(
@@ -61,7 +61,7 @@ c.on('ready', () => {
                                 return console.log('上传' + fileName + ' upZip success.txt' + '文件成功');
                             }
                         });
-                    return console.log('下载 ' + fileName + ' 文件成功');
+                    return console.log('下载 ' + serverContent + fileName + ' 文件成功');
                 }
 
             }
